@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANDA Nutrition Tracker</title>
+    <!-- 1. Load Tailwind CSS (for styling, from your React file) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Load custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <!-- 3. Load custom JavaScript (defer ensures HTML is loaded first) -->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 p-4 min-h-screen font-sans">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div class="flex items-center gap-4">
+                <div class="text-6xl">🐼</div>
+                <div class="flex-1">
+                    <h1 class="text-3xl font-bold text-gray-800">PANDA Nutrition Tracker</h1>
+                    <p class="text-gray-600">Your friendly food tracking buddy</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panda Message -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 rounded-xl p-4 mb-6 border-2 border-green-200">
+            <div class="flex items-start gap-3">
+                <span class="text-2xl">🐼</span>
+                <p id="panda-message" class="flex-1 text-gray-800">Hey there! I'm PANDA, your food tracking buddy 🐾</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="back-button" class="mb-4 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition" style="display: none;">
+            ← Back to Home
+        </button>
+
+        <!-- Main Content (JavaScript will fill this) -->
+        <div id="main-content" class="bg-white rounded-2xl shadow-lg p-6">
+            <!-- Views will be injected here -->
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center mt-6 text-gray-600 text-sm">
+            Remember to eat well! 🐾
+        </div>
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- HTML TEMPLATES FOR JAVASCRIPT VIEWS -->
+    <!-- ======================================================== -->
+    
+    <!-- Home View Template -->
+    <template id="template-home">
+        <div class="space-y-6">
+            <div id="home-summary-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- JS will fill these -->
+                <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 rounded-xl">
+                    <div class="text-sm text-red-800">Calories</div>
+                    <div id="home-total-Calories" class="text-2xl font-bold text-red-900">0</div>
+                    <div id="home-target-Calories" class="text-xs text-red-700">of 2000</div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-xl">
+                    <div class="text-sm text-blue-800">Protein</div>
+                    <div id="home-total-Protein" class="text-2xl font-bold text-blue-900">0g</div>
+                    <div id="home-target-Protein" class="text-xs text-blue-700">of 150g</div>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 p-4 rounded-xl">
+                    <div class="text-sm text-yellow-800">Fat</div>
+                    <div id="home-total-Fat" class="text-2xl font-bold text-yellow-900">0g</div>
+                    <div id="home-target-Fat" class="text-xs text-yellow-700">of 70g</div>
+                </div>
+                <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 rounded-xl">
+                    <div class="text-sm text-green-800">Carbs</div>
+                    <div id="home-total-Carbs" class="text-2xl font-bold text-green-900">0g</div>
+                    <div id="home-target-Carbs" class="text-xs text-green-700">of 250g</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button data-view="log" class="nav-button bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-xl hover:shadow-lg transition flex flex-col items-center justify-center gap-2">
+                    <span class="text-3xl">➕</span>
+                    <span class="font-bold">Log Meal</span>
+                </button>
+                <button data-view="summary" class="nav-button bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-xl hover:shadow-lg transition flex flex-col items-center justify-center gap-2">
+                    <span class="text-3xl">📊</span>
+                    <span class="font-bold">View Summary</span>
+                </button>
+                <button data-view="targets" class="nav-button bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-xl hover:shadow-lg transition flex flex-col items-center justify-center gap-2">
+                    <span class="text-3xl">🎯</span>
+                    <span class="font-bold">Set Targets</span>
+                </button>
+                <button class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-6 rounded-xl hover:shadow-lg transition flex flex-col items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                    <span class="text-3xl">📈</span>
+                    <span class="font-bold">Weekly View</span>
+                    <span class="text-xs">(Coming Soon)</span>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Log Meal View Template -->
+    <template id="template-log">
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">🍽️ Log Your Meal</h2>
+            
+            <div id="log-food-grid" class="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-96 overflow-y-auto p-2 bg-gray-50 rounded-lg">
+                <!-- JS will fill this with food buttons -->
+            </div>
+
+            <form id="log-meal-form" class="bg-blue-50 p-4 rounded-lg space-y-3" style="display: none;">
+                <h3 id="log-food-name" class="font-bold text-lg">Select a food</h3>
+                <div class="flex gap-2 items-center">
+                    <input
+                        type="number"
+                        id="log-food-amount"
+                        step="0.1"
+                        placeholder="Amount"
+                        class="flex-1 px-3 py-2 border rounded-lg"
+                        required
+                    />
+                    <span id="log-food-unit" class="text-gray-600">unit</span>
+                </div>
+                <div id="log-food-info" class="grid grid-cols-2 gap-2 text-sm">
+                    <!-- JS will fill this -->
+                </div>
+                <button
+                    type="submit"
+                    class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+                >
+                    Add to Log
+                </button>
+            </form>
+        </div>
+    </template>
+
+    <!-- Daily Summary View Template -->
+    <template id="template-summary">
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Today's Summary</h2>
+            
+            <div id="summary-progress-bars" class="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl">
+                <!-- JS will fill progress bars here -->
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border">
+                <h3 class="font-bold mb-3">Today's Meals</h3>
+                <div id="summary-log-list" class="space-y-2 max-h-60 overflow-y-auto">
+                    <!-- JS will fill meal list here -->
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Set Targets View Template -->
+    <template id="template-targets">
+         <form id="set-targets-form" class="space-y-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Set Your Targets</h2>
+            
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl space-y-4">
+                <div>
+                    <label class="block font-semibold mb-2">Calories</label>
+                    <input type="number" id="target-Calories" class="w-full px-4 py-2 border rounded-lg" />
+                </div>
+                 <div>
+                    <label class="block font-semibold mb-2">Protein</label>
+                    <input type="number" id="target-Protein" class="w-full px-4 py-2 border rounded-lg" />
+                </div>
+                 <div>
+                    <label class="block font-semibold mb-2">Fat</label>
+                    <input type="number" id="target-Fat" class="w-full px-4 py-2 border rounded-lg" />
+                </div>
+                 <div>
+                    <label class="block font-semibold mb-2">Carbs</label>
+                    <input type="number" id="target-Carbs" class="w-full px-4 py-2 border rounded-lg" />
+                </div>
+                
+                <button
+                    type="submit"
+                    class="w-full bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 transition font-semibold"
+                >
+                    Save Targets
+                </button>
+            </div>
+        </form>
+    </template>
+
+</body>
+</html>

@@ -66,17 +66,12 @@ db_foods = pd.DataFrame(foods)
 db_foods.set_index('FoodName', inplace=True)
 
 
-# ---- Logs and Targets (Global Variables) ----
-# NOTE: In a real app, this should be a database (like SQLite or Firestore)
-# so each user has their own data. This simple version will be shared by
-# everyone using the app and will reset when the server restarts.
+
 log_daily = pd.DataFrame(columns=['Date', 'Time', 'Food', 'Amount', 'Unit', 'Calories', 'Protein', 'Fat', 'Carbs'])
 targets = {'Calories': 2000, 'Protein': 150, 'Fat': 70, 'Carbs': 250}
 
 
-# ==================================================================
-# --- API ENDPOINTS (What your JavaScript will call) ---
-# ==================================================================
+
 
 # --- 1. Get Food Database ---
 @app.route('/api/get_foods', methods=['GET'])
@@ -170,11 +165,8 @@ def get_summary():
         "targets": targets,
         "logs": logs_json
     })
+    
 
-
-# ==================================================================
-# --- FRONTEND ROUTE ---
-# ==================================================================
 @app.route('/')
 def index():
     """Serves the main HTML page."""

@@ -62,14 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Fill in the data
         const { totals, targets } = data;
-        view.getElementById('home-total-Calories').textContent = Math.round(totals.Calories);
-        view.getElementById('home-target-Calories').textContent = `of ${targets.Calories}`;
-        view.getElementById('home-total-Protein').textContent = `${Math.round(totals.Protein)}g`;
-        view.getElementById('home-target-Protein').textContent = `of ${targets.Protein}g`;
-        view.getElementById('home-total-Fat').textContent = `${Math.round(totals.Fat)}g`;
-        view.getElementById('home-target-Fat').textContent = `of ${targets.Fat}g`;
-        view.getElementById('home-total-Carbs').textContent = `${Math.round(totals.Carbs)}g`;
-        view.getElementById('home-target-Carbs').textContent = `of ${targets.Carbs}g`;
+        // CHANGED: use querySelector on the fragment instead of getElementById
+        view.querySelector('#home-target-Calories').textContent = `of ${targets.Calories}`;
+        view.querySelector('#home-total-Protein').textContent = `${Math.round(totals.Protein)}g`;
+        view.querySelector('#home-target-Protein').textContent = `of ${targets.Protein}g`;
+        view.querySelector('#home-total-Calories').textContent = Math.round(totals.Calories);
+        view.querySelector('#home-total-Fat').textContent = `${Math.round(totals.Fat)}g`;
+        view.querySelector('#home-target-Fat').textContent = `of ${targets.Fat}g`;
+        view.querySelector('#home-total-Carbs').textContent = `${Math.round(totals.Carbs)}g`;
+        view.querySelector('#home-target-Carbs').textContent = `of ${targets.Carbs}g`;
 
         // Add click listeners to navigation buttons
         view.querySelectorAll('.nav-button').forEach(button => {
@@ -97,12 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const template = document.getElementById('template-log');
         const view = template.content.cloneNode(true);
 
-        const foodGrid = view.getElementById('log-food-grid');
-        const form = view.getElementById('log-meal-form');
-        const foodNameEl = view.getElementById('log-food-name');
-        const foodAmountEl = view.getElementById('log-food-amount');
-        const foodUnitEl = view.getElementById('log-food-unit');
-        const foodInfoEl = view.getElementById('log-food-info');
+        // CHANGED: use querySelector on the fragment
+        const foodGrid = view.querySelector('#log-food-grid');
+        const form = view.querySelector('#log-meal-form');
+        const foodNameEl = view.querySelector('#log-food-name');
+        const foodAmountEl = view.querySelector('#log-food-amount');
+        const foodUnitEl = view.querySelector('#log-food-unit');
+        const foodInfoEl = view.querySelector('#log-food-info');
 
         // Create a button for each food
         for (const [foodName, details] of Object.entries(foods)) {
@@ -187,8 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const template = document.getElementById('template-summary');
         const view = template.content.cloneNode(true);
         
-        const progressBarsEl = view.getElementById('summary-progress-bars');
-        const logListEl = view.getElementById('summary-log-list');
+        // CHANGED: use querySelector on the fragment
+        const progressBarsEl = view.querySelector('#summary-progress-bars');
+        const logListEl = view.querySelector('#summary-log-list');
 
         // Create progress bars
         for (const [key, target] of Object.entries(targets)) {
@@ -245,22 +248,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const template = document.getElementById('template-targets');
         const view = template.content.cloneNode(true);
 
-        // Fill the form with current values
-        view.getElementById('target-Calories').value = targets.Calories;
-        view.getElementById('target-Protein').value = targets.Protein;
-        view.getElementById('target-Fat').value = targets.Fat;
-        view.getElementById('target-Carbs').value = targets.Carbs;
+        // CHANGED: use querySelector on the fragment
+        view.querySelector('#target-Calories').value = targets.Calories;
+        view.querySelector('#target-Protein').value = targets.Protein;
+        view.querySelector('#target-Fat').value = targets.Fat;
+        view.querySelector('#target-Carbs').value = targets.Carbs;
         
         // Add submit listener
-        view.getElementById('set-targets-form').addEventListener('submit', async (e) => {
+        view.querySelector('#set-targets-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             // Get new values from form
             const newTargets = {
-                Calories: parseFloat(view.getElementById('target-Calories').value),
-                Protein: parseFloat(view.getElementById('target-Protein').value),
-                Fat: parseFloat(view.getElementById('target-Fat').value),
-                Carbs: parseFloat(view.getElementById('target-Carbs').value),
+                Calories: parseFloat(view.querySelector('#target-Calories').value),
+                Protein: parseFloat(view.querySelector('#target-Protein').value),
+                Fat: parseFloat(view.querySelector('#target-Fat').value),
+                Carbs: parseFloat(view.querySelector('#target-Carbs').value),
             };
 
             // Send new targets to backend

@@ -1,0 +1,14 @@
+/* Set a nice default font for the whole app */
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Add a smooth transition to the panda message */
+#panda-message {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Custom style for selected food button (to override default focus) */
+.food-button.border-green-500 {
+    box-shadow: 0 0 0 2px #22c55e; /* green-500 */
+}
